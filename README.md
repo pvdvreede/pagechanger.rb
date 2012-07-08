@@ -1,18 +1,59 @@
-# README for a newly created project.
+# pagechanger
 
-There are a couple of things you should do first, before you can use all of Git's power:
+### File alteration bot for programmatically altering large amount of files with Regular Expressions
 
-  * Add a remote to this project: in the Cloud9 IDE command line, you can execute the following commands
-    `git remote add [remote name] [remote url (eg. 'git@github.com:/ajaxorg/node_chat')]` [Enter]
-  * Create new files inside your project
-  * Add them to to Git by executing the following command
-    `git add [file1, file2, file3, ...]` [Enter]
-  * Create a commit which can be pushed to the remote you just added
-    `git commit -m 'added new files'` [Enter]
-  * Push the commit the remote
-    `git push [remote name] master` [Enter]
+pagechanger can be used to search through text based files and make change to the text by adding, deleting, changing or a combination of all three.
 
-That's it! If this doesn't work for you, please visit the excellent resources from [Github.com](http://help.github.com) and the [Pro Git](http://http://progit.org/book/) book.
-If you can't find your answers there, feel free to ask us via Twitter (@cloud9ide), [mailing list](groups.google.com/group/cloud9-ide) or IRC (#cloud9ide on freenode).
+This is done using a config file to tell page-changer what to alter in what file type. So that the process can be rerun over multiple files, multiple times.
 
-Happy coding!
+#### Installation
+
+TBA
+
+#### Usage
+
+pagechanger uses a YAML config file that you specify as a command line argument to know what files to change.
+
+The format of the config file is:
+
+      - name: <name of the set>
+        mask: <file mask of what files to alter>
+        criteria: 
+        - <list of strings or reg ex that must be present in the file for it to be processed>
+        exceptions:
+        - <list of filenames (without paths) that match the criteria but you want to ignore explicitly>
+        remove:
+            - <reg ex to remove from line>              
+        replace: 
+            - find: <text to that will be replaced use %rep%>
+              replace: <text to replace>
+                
+      - name: ... <put n or more parser sets, to parse different file types, or alterations required>
+
+An example file would be:
+
+    - name: html
+      criteria: 
+      - findme
+      exceptions:
+      - dontchangeme.txt
+      mask: 'Search.html'
+      remove:
+      - '<head>'
+      - '<html xmlns="http://www.w3.org/1999/xhtml">'
+      - '</head>'
+      - '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'
+      - '</html>'
+      - '</body>'
+      - '<body>'
+      replace:
+      - find: 'colou*r'
+        replace: 'something else'
+
+To run the config over a set of files use the command line tool:
+
+    TBA
+    
+Here are the command line options and arguments:
+
+    TBA
