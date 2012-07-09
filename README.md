@@ -4,7 +4,7 @@
 
 pagechanger can be used to search through text based files and make change to the text by adding, deleting, changing or a combination of all three.
 
-This is done using a config file to tell page-changer what to alter in what file type. So that the process can be rerun over multiple files, multiple times.
+This is done using a config file to tell pagechanger what to alter in what file type. So that the process can be rerun over multiple files, multiple times.
 
 #### Installation
 
