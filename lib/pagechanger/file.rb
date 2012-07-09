@@ -1,6 +1,5 @@
 require "pathname"
 
-
 module Pagechanger
   class File
   
@@ -19,7 +18,7 @@ module Pagechanger
           return true
         end
       end
-      puts "Skipping file #{@fullpath} as it does not match criteria."
+      self.print_msg "Skipping file #{@fullpath} as it does not match criteria."
       return false
     end
     
@@ -27,7 +26,7 @@ module Pagechanger
       # check and see if the filename or the full path (with filename) is in
       # the exceptions
       if @config.exceptions.include? @filename or @config.exceptions.include? @fullpath
-        puts "Skipping file #{@fullpath} as it is an exception."
+        self.print_msg "Skipping file #{@fullpath} as it is an exception."
         return true
       end
       return false
@@ -37,11 +36,14 @@ module Pagechanger
       if not @file_str
         @file_str = File.read @fullpath
       end
-      puts "Processing file #{@fullpath}."
+      self.print_msg "Processing file #{@fullpath}."
       process_removals @config.remove
       process_replacements @config.replace
     end
     
+    def self.print_msg msg
+      Time.now.strftime "%Y-%M-%D %H:%M.%S - #{msg}"
+    end
     
     private
     
@@ -57,5 +59,7 @@ module Pagechanger
         pattern = Regexp.new r.find
         @file_str = @file_str.sub pattern, r.replace
       end
+    end
+    
   end
 end

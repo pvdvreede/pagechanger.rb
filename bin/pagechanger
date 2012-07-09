@@ -1,13 +1,13 @@
 #! /usr/bin/env ruby
 
-require "rubygems"
+#require "rubygems"
 require "thor"
-require "../lib/pagechanger"
+require "pagechanger"
 
 class PagechangerCommand < Thor
-  method_option :recursive => false, :type => :boolean, aliases => "-r", :desc => "Recusively alter files."
+  method_option :recursive => false, :type => :boolean, :aliases => "-r", :desc => "Recursively alter files."
   
-  desc "process CONFIG FILE", "Mass alter text files with Reg ex expressions."
+  desc "process CONFIG DIR", "Mass alter text files with Reg ex expressions."
   
   def process config_filename, dir
   
